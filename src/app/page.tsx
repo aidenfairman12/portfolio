@@ -17,14 +17,13 @@ import {
 // ─── Config — fill these in before publishing ────────────────────────────────
 
 const ME = {
-  name:     '[Your Name]',
-  title:    '[Your Title — e.g. Software Developer / Data Engineer]',
-  tagline:  '[Two-sentence bio. E.g. "I build data-driven web applications that turn complex ' +
-            'datasets into clear, actionable visuals. Currently focused on supply chain ' +
-            'intelligence and geospatial analytics."]',
-  email:    'placeholder@email.com',
-  github:   'https://github.com/placeholder',
-  linkedin: 'https://linkedin.com/in/placeholder',
+  name:     'Aiden Emanuel Fairman',
+  title:    'Bioinformatician / Computer Scientist',
+  tagline:  'I build data-driven tools at the intersection of computational biology and software engineering — ' +
+            'and occasionally wherever else interesting problems take me.',
+  email:    'aidenfairman12@gmail.com',
+  github:   'https://github.com/aidenfairman12',
+  linkedin: 'https://www.linkedin.com/in/aiden-fairman-8300b1204/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHRxt16ZKQ1qdqBnw%2BvsBNQ%3D%3D',
   resume:   '/resume.pdf',          // drop your PDF into /public/resume.pdf
 }
 
@@ -41,8 +40,8 @@ const PROJECTS = [
                  'reach it. Includes cost modelling, mode analysis, and concentration risk ' +
                  'scoring based on 522k real freight records from the Bureau of Transportation ' +
                  'Statistics.',
-    liveUrl:     'https://your-freightflow-url.vercel.app',  // ← update this
-    githubUrl:   'https://github.com/placeholder/freightflow',
+    liveUrl:     'https://freight-flow-ajfrrvzbw-aidenfairman12s-projects.vercel.app/',  // ← update this
+    githubUrl:   'https://github.com/aidenfairman12/FreightFlow',
     tech:        ['Next.js 14', 'TypeScript', 'Python', 'PostgreSQL', 'Leaflet', 'Recharts', 'Tailwind CSS', 'Vercel'],
     highlights: [
       { icon: Map,       label: 'Interactive Map',    desc: 'Weighted freight-flow lines across US corridors' },
@@ -53,18 +52,22 @@ const PROJECTS = [
 ]
 
 const SKILLS = [
-  { category: 'Frontend',  items: ['React / Next.js', 'TypeScript', 'Tailwind CSS', 'Data Visualization'] },
-  { category: 'Backend',   items: ['Python', 'PostgreSQL', 'REST APIs', 'ETL Pipelines'] },
-  { category: 'Tools',     items: ['Docker', 'Git', 'Vercel', 'Linux'] },
-  { category: 'Concepts',  items: ['Supply Chain Analysis', 'Geospatial Data', 'Cost Modelling', 'FAF5 / BTS Data'] },
+  { category: 'Languages',      items: ['Python', 'R', 'SQL', 'JavaScript / TypeScript', 'Bash'] },
+  { category: 'Bioinformatics', items: ['Seurat', 'Scanpy', 'Spatial Transcriptomics', 'Cell Ranger / Space Ranger', 'SLURM'] },
+  { category: 'Web & Eng',      items: ['React / Next.js', 'Full-stack Dev', 'REST APIs', 'PostgreSQL'] },
+  { category: 'Workflow',       items: ['Git', 'Docker', 'Agile / Scrum', 'Pipeline Design'] },
 ]
 
 const ABOUT_PARAGRAPHS = [
-  '[Paragraph 1 — where you\'re from, your background, what you studied or how you got into ' +
-  'software / data. Keep it brief and personal.]',
-  '[Paragraph 2 — what you\'re interested in technically. Supply chain, data engineering, ' +
-  'full-stack development — whatever is most relevant to the roles you\'re targeting.]',
-  '[Paragraph 3 — optional. Outside interests, what motivates you, what you\'re looking for next.]',
+  'I studied Computer Science at Boston University before pursuing a Master\'s in Bioinformatics ' +
+  'and Computational Biology at the University of Bern. I currently work part-time as a ' +
+  'Computational Biology Consultant at Novo Nordisk, applying computational methods to biological ' +
+  'research problems.',
+  'I\'m drawn to problems that sit at the intersection of data and complex systems — spatial ' +
+  'alignments, pathway modeling, and finding where bottlenecks emerge in large-scale pipelines. ' +
+  'FreightFlow grew out of that same instinct applied to supply chain networks. Machine learning ' +
+  'is the next direction I\'m actively building toward, both within computational biology and beyond.',
+  'Outside of work I enjoy travelling, skiing, and exploring nature.',
 ]
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -273,7 +276,7 @@ export default function PortfolioPage() {
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-400">
               <FileDown className="h-4 w-4" /> Download Resume
             </a>
-            <p className="mt-4 text-[11px] text-slate-600">PDF · Updated [Month Year]</p>
+            <p className="mt-4 text-[11px] text-slate-600">PDF · Updated March 2026</p>
           </div>
         </section>
 
