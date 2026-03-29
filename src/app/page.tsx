@@ -19,7 +19,7 @@ import {
 // ─── Config — fill these in before publishing ────────────────────────────────
 
 const ME = {
-  name:     'Aiden Emanuel Fairman',
+  name:     'Aiden Fairman',
   title:    'Bioinformatician / Computer Scientist',
   tagline:  'I build data-driven tools at the intersection of computational biology and software engineering, ' +
             'and occasionally wherever else interesting problems take me.',
