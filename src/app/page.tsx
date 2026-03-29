@@ -42,7 +42,7 @@ const PROJECTS = [
                  'reach it. Includes cost modelling, mode analysis, and concentration risk ' +
                  'scoring based on 522k real freight records from the Bureau of Transportation ' +
                  'Statistics.',
-    liveUrl:     'https://freight-flow-ajfrrvzbw-aidenfairman12s-projects.vercel.app/',
+    liveUrl:     'https://af-freight-flow.vercel.app/',
     githubUrl:   'https://github.com/aidenfairman12/FreightFlow',
     tech:        ['Next.js 14', 'TypeScript', 'Python', 'PostgreSQL', 'Leaflet', 'Recharts', 'Tailwind CSS', 'Vercel'],
     highlights: [
