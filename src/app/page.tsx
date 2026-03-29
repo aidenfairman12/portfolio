@@ -96,10 +96,10 @@ const CASE_STUDY = {
 }
 
 const SKILLS = [
-  { category: 'Languages',      items: ['Python', 'R', 'SQL', 'JavaScript / TypeScript', 'Bash'] },
-  { category: 'Bioinformatics', items: ['Seurat', 'Scanpy', 'Spatial Transcriptomics', 'Cell Ranger / Space Ranger', 'SLURM'] },
-  { category: 'Web & Eng',      items: ['React / Next.js', 'Full-stack Dev', 'REST APIs', 'PostgreSQL'] },
-  { category: 'Workflow',       items: ['Git', 'Docker', 'Agile / Scrum', 'Pipeline Design'] },
+  { category: 'Programming',    items: ['Python', 'R', 'SQL', 'JavaScript', 'Bash'] },
+  { category: 'Technical',      items: ['Machine Learning', 'Full-stack Web Dev', 'RESTful APIs', 'Git', 'Bioinformatics Tools'] },
+  { category: 'Analytical',     items: ['Data Analysis & Visualization', 'Pipeline Architecture', 'Workflow Design & Standardization'] },
+  { category: 'Collaboration',  items: ['Agile / Scrum', 'Cross-functional Teams', 'Stakeholder Communication', 'Parallel Workload Management'] },
 ]
 
 const ABOUT_PARAGRAPHS = [
