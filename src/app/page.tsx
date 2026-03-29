@@ -23,7 +23,7 @@ const ME = {
             'and occasionally wherever else interesting problems take me.',
   email:    'aidenfairman12@gmail.com',
   github:   'https://github.com/aidenfairman12',
-  linkedin: 'https://www.linkedin.com/in/aiden-fairman-8300b1204/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHRxt16ZKQ1qdqBnw%2BvsBNQ%3D%3D',
+  linkedin: 'linkedin.com/in/aiden-fairman-8300b1204',
   resume:   '/resume.pdf',          // drop your PDF into /public/resume.pdf
 }
 
