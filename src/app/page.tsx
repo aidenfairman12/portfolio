@@ -24,7 +24,7 @@ const ME = {
   email:    'aidenfairman12@gmail.com',
   github:   'https://github.com/aidenfairman12',
   linkedin: 'linkedin.com/in/aiden-fairman-8300b1204',
-  resume:   '/resume.pdf',          // drop your PDF into /public/resume.pdf
+  resume:   '/resume.pdf',
 }
 
 const PROJECTS = [
@@ -167,7 +167,7 @@ export default function PortfolioPage() {
               className="flex items-center gap-2 rounded-lg bg-sky-500 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-sky-400">
               View Projects <ChevronRight className="h-4 w-4" />
             </button>
-            <a href={ME.resume} download
+            <a href={ME.resume} download="Aiden_Fairman_Resume.pdf"
               className="flex items-center gap-2 rounded-lg border border-slate-600 px-5 py-2.5 text-sm font-semibold text-slate-300 transition-colors hover:border-slate-400 hover:text-white">
               <FileDown className="h-4 w-4" /> Download Resume
             </a>
@@ -272,7 +272,7 @@ export default function PortfolioPage() {
           <div className="rounded-2xl border border-slate-700/60 bg-slate-800/50 p-10 text-center">
             <FileDown className="mx-auto mb-4 h-10 w-10 text-slate-500" />
             <p className="text-sm text-slate-400">Download my full resume as a PDF</p>
-            <a href={ME.resume} download
+            <a href={ME.resume} download="Aiden_Fairman_Resume.pdf"
               className="mt-5 inline-flex items-center gap-2 rounded-lg bg-sky-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-sky-400">
               <FileDown className="h-4 w-4" /> Download Resume
             </a>

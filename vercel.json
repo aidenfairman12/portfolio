@@ -1,0 +1,14 @@
+{
+  "framework": "nextjs",
+  "headers": [
+    {
+      "source": "/resume.pdf",
+      "headers": [
+        {
+          "key": "Content-Disposition",
+          "value": "attachment; filename=\"Aiden_Fairman_Resume.pdf\""
+        }
+      ]
+    }
+  ]
+}
