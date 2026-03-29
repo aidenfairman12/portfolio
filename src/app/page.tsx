@@ -19,7 +19,7 @@ import {
 const ME = {
   name:     'Aiden Emanuel Fairman',
   title:    'Bioinformatician / Computer Scientist',
-  tagline:  'I build data-driven tools at the intersection of computational biology and software engineering — ' +
+  tagline:  'I build data-driven tools at the intersection of computational biology and software engineering, ' +
             'and occasionally wherever else interesting problems take me.',
   email:    'aidenfairman12@gmail.com',
   github:   'https://github.com/aidenfairman12',
@@ -34,8 +34,8 @@ const PROJECTS = [
     year:        '2025',
     type:        'Solo project',
     status:      'Live' as const,
-    description: 'A US freight supply chain intelligence platform. Pick a finished product — ' +
-                 'automobiles, beef, pharmaceuticals, or steel — select an assembly hub, and ' +
+    description: 'A US freight supply chain intelligence platform. Pick a finished product: ' +
+                 'automobiles, beef, pharmaceuticals, or steel. Select an assembly hub, and ' +
                  'visualise how precursor materials flow across America\'s freight network to ' +
                  'reach it. Includes cost modelling, mode analysis, and concentration risk ' +
                  'scoring based on 522k real freight records from the Bureau of Transportation ' +
@@ -61,7 +61,7 @@ const SKILLS = [
 const ABOUT_PARAGRAPHS = [
   'I studied Computer Science at Boston University before pursuing a Master\'s in Bioinformatics ' +
   'and Computational Biology at the University of Bern. I currently work part-time as a ' +
-  'Computational Biology Consultant at Novo Nordisk, applying computational methods to biological ' +
+  'Computational Biology Consultant at Novo Nordisk, while finishing my Master\'s, applying computational methods to biological ' +
   'research problems.',
   'I\'m drawn to problems that sit at the intersection of data and complex systems — spatial ' +
   'alignments, pathway modeling, and finding where bottlenecks emerge in large-scale pipelines. ' +
