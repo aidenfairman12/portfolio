@@ -109,7 +109,7 @@ const FREIGHT_SIGNAL = {
                'Ask a natural-language question about what\'s affecting freight markets; the system ' +
                'retrieves the most relevant chunks from a live corpus of logistics news, passes them to ' +
                'an LLM, and returns a grounded answer with full source attribution. Built entirely on ' +
-               'open-source models — no OpenAI dependency.',
+               'open-source models.',
   githubUrl:   'https://github.com/aidenfairman12/FreightSignal',
   tech:        ['Python', 'FastAPI', 'Next.js 14', 'Chroma', 'sentence-transformers', 'Groq / Llama 3.1', 'RAGAS', 'Vercel'],
   highlights: [
@@ -127,15 +127,15 @@ const FREIGHT_SIGNAL_CASE_STUDY = {
   decisions: [
     {
       title: 'Retrieve-then-rerank rather than retrieval alone',
-      body: 'A bi-encoder encodes the query and each document independently — fast, but it misses fine-grained query-document interactions. A cross-encoder reads both together, which is more accurate but too slow to run against the full corpus. The standard solution is to use the bi-encoder for a fast first-pass over 20 candidates, then apply the cross-encoder to rerank to 5. This is the pattern most RAG implementations skip.',
+      body: 'A bi-encoder encodes the query and each document independently. A cross-encoder reads both together, which is more accurate but too slow to run against the full corpus. The standard solution is to use the bi-encoder for a fast first-pass over 20 candidates, then apply the cross-encoder to rerank to 5. This is the pattern most RAG implementations skip.',
     },
     {
       title: 'Fully open-source model stack',
-      body: 'BAAI/bge-small-en-v1.5 scores within ~2 points of OpenAI\'s ada-002 on the MTEB leaderboard at 33 MB vs ~1.5 GB for the large variant — small enough to run on CPU in CI and on Render\'s free tier. The reranker (bge-reranker-base) and generation model (Llama 3.1 8B via Groq) are also open weights. No proprietary API dependency for the core pipeline.',
+      body: 'BAAI/bge-small-en-v1.5 scores within ~2 points of OpenAI\'s ada-002 on the MTEB leaderboard at 33 MB vs ~1.5 GB for the large variant, small enough to run on CPU in CI and on Render\'s free tier. The reranker (bge-reranker-base) and generation model (Llama 3.1 8B via Groq) are also open weights. No proprietary API dependency for the core pipeline.',
     },
     {
       title: 'Evaluation with RAGAS rather than manual inspection',
-      body: 'Most RAG demos are evaluated by eyeballing a few outputs. RAGAS uses an LLM as a judge to score four pipeline properties systematically across a held-out synthetic test set of 50 QA pairs. Context precision and recall both scored 1.0, confirming the retrieve-then-rerank pipeline is selecting relevant chunks. Answer relevancy scored 0.917. Faithfulness scored 0.0 — a documented limitation of using smaller open-source models as LLM judges, not a reflection of generation quality, and discussed honestly in the README.',
+      body: 'Most RAG demos are evaluated by eyeballing a few outputs. RAGAS uses an LLM as a judge to score four pipeline properties systematically across a held-out synthetic test set of 50 QA pairs. Context precision and recall both scored 1.0, confirming the retrieve-then-rerank pipeline is selecting relevant chunks. Answer relevancy scored 0.917. Faithfulness scored 0.0, a documented limitation of using smaller open-source models as LLM judges, not a reflection of generation quality, and discussed honestly in the README.',
     },
   ],
   nextSteps: [
