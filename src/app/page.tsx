@@ -14,6 +14,9 @@ import {
   ChevronRight,
   ChevronDown,
   ChevronUp,
+  Brain,
+  Layers,
+  FlaskConical,
 } from 'lucide-react'
 
 // ─── Config — fill these in before publishing ────────────────────────────────
@@ -91,6 +94,62 @@ const CASE_STUDY = {
     {
       title: 'Mode-level breakdown on the map',
       body: 'FAF5 records transport mode: truck, rail, water, pipeline. Visualizing which corridors are truck-dependent versus rail-dependent would add another dimension to the fragility analysis, since mode concentration is itself a vulnerability.',
+    },
+  ],
+}
+
+// ─── FreightSignal data ───────────────────────────────────────────────────────
+
+const FREIGHT_SIGNAL = {
+  name:        'FreightSignal',
+  year:        '2025',
+  type:        'Solo project',
+  status:      'Research' as const,
+  description: 'A supply chain disruption intelligence system built on retrieval-augmented generation. ' +
+               'Ask a natural-language question about what\'s affecting freight markets; the system ' +
+               'retrieves the most relevant chunks from a live corpus of logistics news, passes them to ' +
+               'an LLM, and returns a grounded answer with full source attribution. Built entirely on ' +
+               'open-source models — no OpenAI dependency.',
+  githubUrl:   'https://github.com/aidenfairman12/FreightSignal',
+  tech:        ['Python', 'FastAPI', 'Next.js 14', 'Chroma', 'sentence-transformers', 'Groq / Llama 3.1', 'RAGAS', 'Vercel'],
+  highlights: [
+    { icon: Layers,       label: 'Retrieve-then-rerank',   desc: 'Bi-encoder first pass (top 20) → cross-encoder reranker → top 5 chunks' },
+    { icon: FlaskConical, label: 'RAGAS evaluation',        desc: 'Systematic pipeline scoring across 50 synthetic QA pairs with LLM-as-judge' },
+    { icon: Brain,        label: 'Open-source stack',       desc: 'BAAI/bge-small + bge-reranker + Llama 3.1 8B — no proprietary model dependency' },
+  ],
+}
+
+const FREIGHT_SIGNAL_CASE_STUDY = {
+  intro: [
+    'Most RAG tutorials stop at cosine similarity search → LLM call. FreightSignal was built to go one step further on two fronts: retrieval quality and evaluation rigour. The goal was to build something I could actually measure, not just demo.',
+    'The system ingests RSS feeds from five logistics publications, chunks and embeds new articles into a Chroma vector store, and serves queries through a FastAPI backend. At query time, a user\'s question is embedded, the top 20 candidate chunks are retrieved by approximate nearest-neighbour search, then a cross-encoder reranker scores each query-chunk pair together and selects the final top 5. The reranked context is passed to Llama 3.1 8B via Groq, which generates a grounded answer with source metadata.',
+  ],
+  decisions: [
+    {
+      title: 'Retrieve-then-rerank rather than retrieval alone',
+      body: 'A bi-encoder encodes the query and each document independently — fast, but it misses fine-grained query-document interactions. A cross-encoder reads both together, which is more accurate but too slow to run against the full corpus. The standard solution is to use the bi-encoder for a fast first-pass over 20 candidates, then apply the cross-encoder to rerank to 5. This is the pattern most RAG implementations skip.',
+    },
+    {
+      title: 'Fully open-source model stack',
+      body: 'BAAI/bge-small-en-v1.5 scores within ~2 points of OpenAI\'s ada-002 on the MTEB leaderboard at 33 MB vs ~1.5 GB for the large variant — small enough to run on CPU in CI and on Render\'s free tier. The reranker (bge-reranker-base) and generation model (Llama 3.1 8B via Groq) are also open weights. No proprietary API dependency for the core pipeline.',
+    },
+    {
+      title: 'Evaluation with RAGAS rather than manual inspection',
+      body: 'Most RAG demos are evaluated by eyeballing a few outputs. RAGAS uses an LLM as a judge to score four pipeline properties systematically across a held-out synthetic test set of 50 QA pairs. Context precision and recall both scored 1.0, confirming the retrieve-then-rerank pipeline is selecting relevant chunks. Answer relevancy scored 0.917. Faithfulness scored 0.0 — a documented limitation of using smaller open-source models as LLM judges, not a reflection of generation quality, and discussed honestly in the README.',
+    },
+  ],
+  nextSteps: [
+    {
+      title: 'Use a dedicated NLI model for faithfulness evaluation',
+      body: 'The 0.0 faithfulness score is a known failure mode of using a small LLM as a judge for claim verification. Replacing the LLM judge with a dedicated natural language inference model (e.g., cross-encoder/nli-deberta-v3-base) would give a more reliable faithfulness signal independent of generation model quality.',
+    },
+    {
+      title: 'Domain-specific embedding fine-tuning',
+      body: 'The off-the-shelf BGE embeddings are general-purpose. Fine-tuning on logistics/supply-chain text pairs — using the existing corpus to generate hard negatives — would likely improve retrieval quality for domain-specific terminology.',
+    },
+    {
+      title: 'Human-labelled evaluation set',
+      body: 'The synthetic QA pairs were generated by prompting the LLM to write realistic questions from held-out articles. A small human-labelled set would give a ground-truth baseline to compare against and validate whether the LLM-generated pairs are representative.',
     },
   ],
 }
@@ -193,6 +252,62 @@ function CaseStudySection() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sky-400">What I&apos;d Do Differently / Next Steps</p>
             <div className="space-y-4">
               {CASE_STUDY.nextSteps.map(({ title, body }) => (
+                <div key={title}>
+                  <p className="mb-1 font-semibold text-slate-300">{title}</p>
+                  <p>{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      )}
+    </div>
+  )
+}
+
+function FreightSignalCaseStudySection() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="mt-6 border-t border-slate-700/50 pt-6">
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="flex w-full items-center justify-between text-left"
+      >
+        <span className="text-sm font-semibold text-slate-300">Case Study</span>
+        {open
+          ? <ChevronUp className="h-4 w-4 text-slate-500" />
+          : <ChevronDown className="h-4 w-4 text-slate-500" />
+        }
+      </button>
+
+      {open && (
+        <div className="mt-6 space-y-8 text-sm leading-relaxed text-slate-400">
+
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sky-400">Introduction</p>
+            <div className="space-y-3">
+              {FREIGHT_SIGNAL_CASE_STUDY.intro.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sky-400">Key Engineering Decisions</p>
+            <div className="space-y-4">
+              {FREIGHT_SIGNAL_CASE_STUDY.decisions.map(({ title, body }) => (
+                <div key={title}>
+                  <p className="mb-1 font-semibold text-slate-300">{title}</p>
+                  <p>{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-sky-400">What I&apos;d Do Next</p>
+            <div className="space-y-4">
+              {FREIGHT_SIGNAL_CASE_STUDY.nextSteps.map(({ title, body }) => (
                 <div key={title}>
                   <p className="mb-1 font-semibold text-slate-300">{title}</p>
                   <p>{body}</p>
@@ -336,6 +451,53 @@ export default function PortfolioPage() {
 
             {/* ── Case Study (expandable) ── */}
             <CaseStudySection />
+          </div>
+
+          {/* FreightSignal card */}
+          <div className="mt-4 rounded-2xl border border-slate-700/60 bg-slate-800/50 p-8">
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-violet-500/25 bg-violet-500/15">
+                  <Brain className="h-5 w-5 text-violet-400" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">{FREIGHT_SIGNAL.name}</h3>
+                  <p className="text-xs text-slate-500">{FREIGHT_SIGNAL.year} · {FREIGHT_SIGNAL.type}</p>
+                </div>
+              </div>
+              <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-3 py-1 text-xs font-semibold text-amber-400">
+                {FREIGHT_SIGNAL.status}
+              </span>
+            </div>
+
+            <p className="mt-5 text-sm leading-relaxed text-slate-300">{FREIGHT_SIGNAL.description}</p>
+
+            <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {FREIGHT_SIGNAL.highlights.map(({ icon: Icon, label, desc }) => (
+                <div key={label} className="rounded-lg border border-slate-700/50 bg-slate-900/50 p-4">
+                  <Icon className="mb-2 h-4 w-4 text-violet-400" />
+                  <p className="text-xs font-semibold text-white">{label}</p>
+                  <p className="mt-0.5 text-[11px] leading-relaxed text-slate-500">{desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {FREIGHT_SIGNAL.tech.map(t => (
+                <span key={t} className="rounded-full border border-violet-500/25 bg-violet-500/10 px-3 py-1 text-xs font-medium text-violet-300">
+                  {t}
+                </span>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={FREIGHT_SIGNAL.githubUrl} target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-2 rounded-lg border border-slate-600 px-4 py-2 text-sm font-semibold text-slate-300 transition-colors hover:border-slate-400 hover:text-white">
+                <Github className="h-4 w-4" /> Source Code
+              </a>
+            </div>
+
+            <FreightSignalCaseStudySection />
           </div>
 
           {/* Future projects placeholder */}
