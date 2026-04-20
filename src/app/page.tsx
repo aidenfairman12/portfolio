@@ -170,7 +170,7 @@ const CLIMATE_QA = {
                'Llama) from 29 IPCC sections, curated to 172 questions, and used to evaluate each model\'s ' +
                'climate science knowledge. Analysis focused on whether models score better on questions they ' +
                'themselves generated.',
-  githubUrl:   'https://github.com/aidenfairman12/climate_benchmarking',
+  githubUrl:   'https://github.com/aidenfairman12/CCBenchmarking',
   tech:        ['Python', 'Anthropic API', 'OpenAI API', 'Google Gemini API', 'Groq / Llama 3.3', 'Streamlit', 'Pandas', 'Matplotlib', 'IPCC AR6'],
   highlights: [
     { icon: Globe,                label: 'Multi-model generation',    desc: '4 models × 29 IPCC AR6 passages → 580 candidate questions' },
